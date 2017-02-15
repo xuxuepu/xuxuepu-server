@@ -1,0 +1,23 @@
+{
+  "name": "xuxuepu-server",
+  "version": "1.0.0",
+  "description": "胖墩官网后台",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xuxuepu/xuxuepu-server.git"
+  },
+  "author": "epo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xuxuepu/xuxuepu-server/issues"
+  },
+  "homepage": "https://github.com/xuxuepu/xuxuepu-server#readme",
+  "dependencies": {
+    "socket.io": "^1.7.2"
+  }
+}
