@@ -1,7 +1,5 @@
-.idea/
 .DS_Store
 .babelrc
-node_modules/
 dist/
 npm-debug.log
 test/unit/coverage
