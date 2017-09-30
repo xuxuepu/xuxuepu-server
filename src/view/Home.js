@@ -1,7 +1,6 @@
-const Home = (app)=>{
+module.exports = function( app ){
     app.get('/', function(req, res){
         var json = {data:'index'};
         res.send(json);
     });
 };
-export default Home;
