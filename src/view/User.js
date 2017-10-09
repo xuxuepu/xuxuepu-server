@@ -1,5 +1,7 @@
+var config = require('./../util/config');
+
 module.exports = function( app ){
-    app.get('/user', function(req, res){
+    app.get(config.requestApi + '/user', function(req, res){
         var json = {data:'user'};
         res.send(json);
     });
