@@ -8,3 +8,8 @@ nodemon app.js
 ```
 npm start
 ```
+
+# linux环境
+```
+nohup npm start </dev/null &
+```

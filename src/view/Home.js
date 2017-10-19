@@ -5,7 +5,7 @@ module.exports = function( app ){
         var json = {
             code: 0,
             data: {
-                msg: "专业写500几十年，经历过500的接口才是最健壮的接口。",
+                msg: "我是首页后台数据",
                 author: "epo",
                 create_date: "2017-09-30"
             }
