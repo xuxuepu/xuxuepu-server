@@ -2,6 +2,9 @@ var config = require('./../util/config');
 var mysql = require('mysql');
 
 module.exports = {
+    /**
+     * 请求数据库
+     */
     execute: function (sql, backcall) {
         var connection = mysql.createConnection(config.sqlConfig);
 
@@ -20,5 +23,36 @@ module.exports = {
             typeof backcall == "function" && backcall(json);
         });
         connection.end();
+    },
+    /**
+     * 插入语句组装数据
+     */
+    addAssembleSql(data){
+        var keys = '(', values = '(';
+        for(var item in data){
+            if(item != 'id' && item != 'update_date' && item != 'create_date'){
+                keys += item + ', ';
+                values += "'" + data[item] + "'" + ', ';
+            }
+        }
+        keys += ')';
+        values += ')';
+        keys = keys.replace(', )', ')');
+        values = values.replace(', )', ')');
+        return {
+          keys: keys,
+          values: values  
+        };
+    },
+    /**
+     * 组装返回数据
+     */
+    resAssembleData(code, data, message){
+        console.log(code, data, message);
+        return {
+            code: code,
+            data: data,
+            message: message
+        };
     }
 };
