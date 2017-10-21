@@ -20,4 +20,13 @@ module.exports = function( app ){
             res.send(results);
         });
     });
+
+    //获取文章详情
+    app.get(config.requestApi + '/essay/detail', function(req, res){
+        essay.getEssayDetail({
+            id : req.query.id
+        }, function(results){
+            res.send(results);
+        });
+    });
 };

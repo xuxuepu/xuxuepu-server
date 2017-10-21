@@ -22,5 +22,21 @@ module.exports = {
             var resData = base.resAssembleData(0, results, null);
             typeof callback == "function" && callback(resData);
         });
+    },
+    /**
+     * 获取用户信息
+     */
+    getEssayDetail: function(data, callback){
+        if(data.id){
+            var sql = 'SELECT * FROM xxp_essay WHERE id=' + data.id;
+            base.execute(sql, function(results){
+                results = results.length > 0 ? results[0] : {};
+                var resData = base.resAssembleData(0, results, null);
+                typeof callback == "function" && callback(resData);
+            });
+        }else{
+            var resData = base.resAssembleData(100, null, 'id不能为空');
+            typeof callback == "function" && callback(resData);
+        }
     }
 };
