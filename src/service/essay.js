@@ -24,11 +24,11 @@ module.exports = {
         });
     },
     /**
-     * 获取用户信息
+     * 获取文章信息
      */
     getEssayDetail: function(data, callback){
         if(data.id){
-            var sql = 'SELECT * FROM xxp_essay WHERE id=' + data.id;
+            var sql = 'SELECT id, author, title, content, date_format(create_date, "%Y-%m-%d %H:%i:%s") as create_date FROM xxp_essay WHERE id=' + data.id;
             base.execute(sql, function(results){
                 results = results.length > 0 ? results[0] : {};
                 var resData = base.resAssembleData(0, results, null);
