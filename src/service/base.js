@@ -59,7 +59,6 @@ module.exports = {
      * 组装返回数据
      */
     resAssembleData(code, data, message){
-        console.log(code, data, message);
         return {
             code: code,
             data: data,

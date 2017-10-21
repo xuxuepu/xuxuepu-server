@@ -30,6 +30,7 @@ module.exports = {
         if(data.id){
             var sql = 'SELECT * FROM xxp_user WHERE id=' + data.id;
             base.execute(sql, function(results){
+                results = results.length > 0 ? results[0] : {};
                 var resData = base.resAssembleData(0, results, null);
                 typeof callback == "function" && callback(resData);
             });
