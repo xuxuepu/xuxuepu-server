@@ -20,4 +20,13 @@ module.exports = function( app ){
             res.send(results);
         });
     });
+
+    //获取用户列表
+    app.get(config.requestApi + '/user/info', function(req, res){
+        user.getUserInfo({
+            id : req.query.id
+        }, function(results){
+            res.send(results);
+        });
+    });
 };

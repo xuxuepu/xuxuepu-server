@@ -5,7 +5,7 @@ module.exports = {
     /**
      * 请求数据库
      */
-    execute: function (sql, backcall) {
+    execute: function (sql, callback) {
         var connection = mysql.createConnection(config.sqlConfig);
 
         connection.connect();
@@ -20,7 +20,7 @@ module.exports = {
                 //将json字符串转化成json数组  
                 json = JSON.parse(string);
             }
-            typeof backcall == "function" && backcall(json);
+            typeof callback == "function" && callback(json);
         });
         connection.end();
     },
@@ -43,6 +43,17 @@ module.exports = {
           keys: keys,
           values: values  
         };
+    },
+    /**
+     * 查询语句组装查询数据
+     */
+    queryAssembleSql(data){
+        for(var item in data){
+            if(item != 'id' && item != 'update_date' && item != 'create_date'){
+                keys += item + ', ';
+                values += "'" + data[item] + "'" + ', ';
+            }
+        }
     },
     /**
      * 组装返回数据
