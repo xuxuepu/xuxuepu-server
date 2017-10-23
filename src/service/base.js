@@ -45,6 +45,20 @@ module.exports = {
         };
     },
     /**
+     * 修改语句组装数据
+     * @param {*data} data 
+     */
+    editAssembleSql(data){
+        var resData = '';
+        for(var item in data){
+            if(item != 'id' && item != 'update_date' && item != 'create_date'){
+                resData += item + '="'+ data[item] + '",';
+            }
+        }
+        resData = resData.substring(0, resData.length - 1);
+        return resData;
+    },
+    /**
      * 查询语句组装查询数据
      */
     queryAssembleSql(data){

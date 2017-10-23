@@ -6,6 +6,20 @@ module.exports = function( app ){
     //新建文章信息
     app.post(config.requestApi + '/essay/add', function(req, res){
         essay.addEssayInfo({
+            author: req.body.author,
+            title: req.body.title,
+            description: req.body.description,
+            content: req.body.content
+        }, function(results){
+            res.send(results);
+        });
+    });
+
+    //修改文章信息
+    app.post(config.requestApi + '/essay/edit', function(req, res){
+        essay.editEssayInfo({
+            id: req.body.id,
+            author: req.body.author,
             title: req.body.title,
             description: req.body.description,
             content: req.body.content

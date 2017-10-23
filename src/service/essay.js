@@ -5,19 +5,34 @@ module.exports = {
      * 新增文章信息
      */
     addEssayInfo: function(data, callback){
-        
-        var resData = base.addAssembleSql(data);
-
-        var sql = 'INSERT INTO xxp_essay '+ resData.keys +' VALUES ' + resData.values;
+        var baseData = base.addAssembleSql(data);
+        var sql = 'INSERT INTO xxp_essay '+ baseData.keys +' VALUES ' + baseData.values;
         base.execute(sql, function(results){
-            typeof callback == "function" && callback(results);
+            var resData = base.resAssembleData(0, null, '新增成功');
+            typeof callback == "function" && callback(resData);
         });
+    },
+    /**
+     * 修改文章信息
+     */
+    editEssayInfo: function(data, callback){
+        if(data.id){
+            var baseData = base.editAssembleSql(data);
+            var sql = 'UPDATE xxp_essay SET '+ baseData +' WHERE id=' + data.id;
+            base.execute(sql, function(results){
+                var resData = base.resAssembleData(0, null, '修改成功');
+                typeof callback == "function" && callback(resData);
+            });
+        }else{
+            var resData = base.resAssembleData(100, null, 'id不能为空');
+            typeof callback == "function" && callback(resData);
+        }
     },
     /**
      * 获取文章信息列表
      */
     getEssayList: function(data, callback){
-        var sql = 'SELECT * FROM xxp_essay';
+        var sql = 'SELECT id, author, title, date_format(create_date, "%Y-%m-%d %H:%i:%s") as create_date FROM xxp_essay';
         base.execute(sql, function(results){
             var resData = base.resAssembleData(0, results, null);
             typeof callback == "function" && callback(resData);
