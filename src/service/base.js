@@ -32,7 +32,7 @@ module.exports = {
         for(var item in data){
             if(item != 'id' && item != 'update_date' && item != 'create_date'){
                 keys += item + ', ';
-                values += "'" + data[item] + "'" + ', ';
+                values += typeof data[item] == "string" ? "'" + data[item] + "'" + ', ' :  data[item] + ', ' ;
             }
         }
         keys += ')';
@@ -52,7 +52,8 @@ module.exports = {
         var resData = '';
         for(var item in data){
             if(item != 'id' && item != 'update_date' && item != 'create_date'){
-                resData += item + '="'+ data[item] + '",';
+                let value = typeof data[item] == "string" ? "'" + data[item] + "'," : data[item] + ', ';
+                resData += item + '='+ value;
             }
         }
         resData = resData.substring(0, resData.length - 1);

@@ -22,7 +22,7 @@ module.exports = {
      */
     getAuthorizationCodeByUserId(data, callback){
         if(data.user_id && data.authorization_code){
-            var sql = 'SELECT authorization_code FROM xxp_resume WHERE user_id=' + data.user_id + ' and authorization_code='+data.authorization_code;
+            var sql = 'SELECT authorization_code FROM xxp_resume WHERE user_id=' + data.user_id + ' and authorization_code="'+data.authorization_code+'"';
             base.execute(sql, function(results){
                 results = results.length > 0 ? results[0] : {};
                 var resData = base.resAssembleData(0, results, null);
