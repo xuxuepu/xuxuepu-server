@@ -49,4 +49,16 @@ module.exports = function( app ){
             });
         }
     });
+
+    //编辑简历
+    app.post(config.requestApi + '/resume/edit', function(req, res){
+        resume.editMyResume({
+            id: req.body.id,
+            title: req.body.title,
+            content: req.body.content,
+            authorization_code: req.body.authorization_code
+        }, function(results){
+            res.send(results);
+        });
+    });
 };
